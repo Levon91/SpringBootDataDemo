@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/header::head(title='home')">
+</head>
+<body>
+
+<div class="container">
+    <nav th:replace="fragment/menu::menu"></nav>
+</div>
+
+<h3><a style="margin-left: 90px" th:href="@{/addbooks}" th:text="#{addBook}"></a></h3>
+
+<!--//single post with image-->
+<div class="container">
+    <div th:replace="fragment/bookImgPost :: [id='image-post']"></div>
+</div>
+
+<div th:if="${pager.totalItems > 5}" class="row">
+    <div th:replace="fragment/pagination :: [id='paginator']"></div>
+</div>
+
+
+<div th:include="fragment/scripts :: [id='scripts']" th:remove="tag">Scripts</div>
+
+</body>
+</html>

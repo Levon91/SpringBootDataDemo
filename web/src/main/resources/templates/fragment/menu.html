@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<nav class="navbar navbar-default" th:fragment="menu">
+    <!--<div class="container-fluid" th:if="${#strings.toLowerCase(session.loggedUser.role).equals('admin')}">-->
+    <div class="container-fluid" th:if="${session.loggedUser.role.id == 1}">
+        <ul class="nav navbar-nav">
+            <li><a class="nav navbar-nav" th:href="@{/books}" th:text="#{booksDemo}"></a></li>
+            <li><a th:href="@{/books}" th:text="#{books}"></a></li>
+            <li><a th:href="@{/pdfBooks/}" th:text="#{pdfBooks}"></a></li>
+            <li><a th:href="@{/takenBooks/}" th:text="#{takenBooks}"></a></li>
+            <li><a th:href="@{/logout/}" th:text="#{logout}"></a></li>
+
+        </ul>
+        <div class="row pull-right" th:include="fragment/headerLangs :: langs">
+        </div>
+    </div>
+    <!--//admin menu-->
+    <div class="container-fluid" th:if="${session.loggedUser.role.id == 2}">
+        <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" th:href="@{/books}" th:text="#{booksDemo}"></a></li>
+            <li><a th:href="@{/books}" th:text="#{books}"></a></li>
+            <!--<li><a th:href="@{/books/}" th:text="#{books}"></a></li>-->
+            <li><a th:href="@{/pdfBooks/}" th:text="#{pdfBooks}"></a></li>
+            <!--<li><a th:href="@{/takenBooks/}" th:text="#{takenBooks}"></a></li>-->
+            <li><a th:href="@{/addBook/}" th:text="#{addBook}"></a></li>
+            <li><a th:href="@{/users}" th:text="#{users}"></a></li>
+            <li><a th:href="@{/logout/}" th:text="#{logout}"></a></li>
+        </ul>
+        <div class="row pull-right" th:include="fragment/headerLangs :: langs">
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

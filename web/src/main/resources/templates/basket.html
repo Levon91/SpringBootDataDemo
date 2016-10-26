@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+
+<div class="well" id="image-post">
+
+
+        <div class="media-body">
+            <h4 class="media-heading" th:text="${books.get(0).name}"></h4>a
+            <p th:text="'AUTHOR : ' + ${book.author}">Author</p>
+            <p th:text="'DESCRIPTION :' +  ${book.desc}">text</p>
+            <p th:text="'Count :' +  ${book.count}">text</p>
+            <a th:attr="download=${book.name}"  th:href="@{|/books/download?name=${book.fileUri}|}"
+               th:text="'Download ' + ${book.name}"></a>
+            <br/>
+            <a th:attr="remove=${book.id}"  th:href="@{|/books/remove?id=${book.id}|}"
+               th:text="'Remove Book'"></a>
+            <br/>
+            <a th:attr="move=${book.id}"  th:href="@{|/books/move?id=${book.id}|}"
+               th:text="'Add book into my basket'"></a>
+        </div>
+        <hr/>
+</div>
+
+</html>

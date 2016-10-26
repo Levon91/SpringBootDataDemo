@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/header::head(title=#{addBook})">
+</head>
+<body class="container">
+<div>
+    <nav th:replace="fragment/menu::menu"></nav>
+</div>
+
+<form>
+    <h3 class="form-signin-heading alert-danger" th:if="${errorMessage != null}" th:text="#{${errorMessage}}"></h3>
+</form>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form action="#" th:action="@{/addbooks}" th:object="${bookCmd}" method="POST" class="form-signin"
+              enctype="multipart/form-data">
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('name')}"
+              th:text="#{error.name}"></span>
+            <input th:type="text" th:placeholder="#{name}" th:value="*{name}" th:field="*{name}"
+                   class="form-control"/>
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('author')}"
+              th:text="#{error.author}"></span>
+            <input th:type="text" th:placeholder="#{author}" th:field="*{author}" class="form-control"/>
+
+            <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('desc')}"
+                  th:text="#{error.desc}"></span>
+            <textarea  th:placeholder="#{desc}" th:field="*{desc}" class="form-control"/>
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('count')}"
+              th:text="#{error.count}"></span>
+            <input min="1" max="999" value="30" type="number" th:placeholder="#{count}" th:field="*{count}"
+                   class="form-control"/>
+            <div class="form-control">
+                <select class="form-control" id="category" name="category" th:field="*{category}">
+                    <option
+                            th:each="cat: ${categories}"
+                            th:value="${cat}"
+                            th:text="${cat}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 form-group">
+                    <label for="file" th:text="#{choosePdfBook}"></label>
+                </div>
+                <div class="col-lg-10 form-group">
+                    <input id="file" name="file" class="form-control" type="file" data-min-file-count="1"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 form-group">
+                    <label for="image" th:text="#{chooseBookImage}"></label>
+                </div>
+                <div class="col-lg-10 form-group">
+                    <input id="image" name="image" class="form-control" type="file" data-min-file-count="1"/>
+                </div>
+            </div>
+
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{addBook}"></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

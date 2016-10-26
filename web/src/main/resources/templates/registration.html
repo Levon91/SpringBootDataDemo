@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragment/header::head(title=#{createAccount})">
+</head>
+<body class="container">
+<div th:include="fragment/headerLangs :: langs">
+</div>
+<!--<span th:if="msgWithoutLogin != null" th:text="${session.msg_without_login}"></span>-->
+<div class="wrapper">
+    <h2 align="center" th:text="#{createAccount}"></h2>
+    <h3 th:if="${message != null}" th:text="${message}"></h3>
+    <form action="#" th:action="@{/register}" th:object="${userForm}" method="POST" class="form-signin">
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('name')}"
+              th:text="#{error.name}"></span>
+        <input th:type="text" th:placeholder="#{name}" th:value="*{name}" th:field="*{name}"
+               class="form-control"/>
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('surname')}"
+              th:text="#{error.surname}"></span>
+        <input th:type="text" th:placeholder="#{surname}" th:field="*{surname}" class="form-control"/>
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('age')}"
+              th:text="#{error.age}"></span>
+        <input type="number" th:placeholder="#{age}" th:field="*{age}" class="form-control"/>
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('email')}"
+              th:text="#{error.email}"></span>
+        <input th:type="email" th:placeholder="#{email}" th:field="*{email}" class="form-control"/>
+
+        <span class="form-signin-heading alert-danger" th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}"></span>
+        <input th:type="password" th:placeholder="#{password}" th:field="*{password}" class="form-control"/>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{createAccount}"></button>
+        <a th:href="@{/login}" th:text="#{pleaseLogin}"></a>
+    </form>
+</div>
+</body>
+</html>

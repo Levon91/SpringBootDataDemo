@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/header::head(title='users')">
+</head>
+<body>
+
+<div class="container">
+    <nav th:replace="fragment/menu::menu"></nav>
+</div>
+<h3 th:if="${session.message != null}" th:text="${session.message}"></h3>
+<div class="container">
+    <div th:replace="fragment/bookPosts :: [id='grid-table-post']"></div>
+</div>
+
+<div th:if="${pager.totalItems > 5}" class="row">
+    <div th:replace="fragment/pagination :: [id='paginator']"></div>
+</div>
+
+
+<div th:include="fragment/scripts :: [id='scripts']" th:remove="tag">Scripts</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="bs-docs-section">
+            <div id="grid-table-post">
+                <table class="table table-striped table-bordered table-hover">
+                    <tr th:if="${books != null}" th:each="book : ${books.pageList}">
+                        <td th:text="${book.id}"></td>
+                        <td><a href="#" th:href="@{'/book/' + ${book.id}}"
+                               th:utext="${book.name}"></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
